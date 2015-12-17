@@ -8,11 +8,11 @@ header('Content-type: text/html; charset=utf-8');
 
 
 try {
-
+    include 'connectdB.php';
+    $db = new PDO($dsn, $db_user, $db_password);
     $inputdel = $_POST['Del'];
     $Member_ID = $_POST['Member'];
 
-    $db = initDB();
     $sql = "SELECT * "
             . "FROM north_delivery_case "
             . "WHERE North_Delivery_Case_ID='" . $inputdel . "'AND Member_ID='" . $Member_ID . "'";
@@ -25,20 +25,6 @@ try {
     }
 } catch (Exception $exc) {
     echo $exc->getMessage();
-}
-
-function initDB() {
-    try {
-        $db_host = 'www.db4free.net:3306';
-        $db_name = 'odac';
-        $db_user = 'odac2015';
-        $db_password = 'odac2015';
-        $dsn = "mysql:host=$db_host;dbname=$db_name;charset=utf8";
-        $db = new PDO($dsn, $db_user, $db_password);
-        return $db;
-    } catch (PDOException $e) {
-        echo $e->getMessage();
-    }
 }
 
 ?>
