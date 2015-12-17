@@ -14,7 +14,7 @@ try {
     $stmt = $db->query($sql);
     $row = $stmt->fetch();
     if (!empty($row)) {
-        if ($row['Active'] == true) {
+        if ($row['Active']) {
             session_start();
             $_SESSION['Member_ID'] = $row['Member_ID'];
             $_SESSION['Name'] = $row['Name'];

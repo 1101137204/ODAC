@@ -14,7 +14,7 @@ try {
                 WHERE Email='" . $uid . "' AND Password='" . base64_decode($ups) . "' AND Name='" . $name . "'";
         $stmt = $db->query($sql);
         $row = $stmt->fetch();
-        if ($row['Active'] == true) {
+        if ($row['Active']) {
             echo '帳號已認證';
             header("refresh:1; url=index.php");
         } else if (!empty($row)) {
