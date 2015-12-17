@@ -1,32 +1,27 @@
 <?php
 
 header('Content-type: text/html; charset=utf-8');
-
 try {
-  if (isset($_POST["sendmember"]))
-  {
-  $sendmember =$_POST["sendmember"];
-  }
-  if (isset($_POST["getid"]))
-  {
-  $getid =$_POST["getid"];
-  }
- 
-  
+    if (isset($_POST["sendmember"])) {
+        $sendmember = $_POST["sendmember"];
+    }
+    if (isset($_POST["getid"])) {
+        $getid = $_POST["getid"];
+    }
     include 'connectdB.php';
     $db = new PDO($dsn, $db_user, $db_password);
-    $sql = "SELECT Name, Email FROM member WHERE Member_ID='".$getid."'";
+    $sql = "SELECT Name, Email FROM member WHERE Member_ID='" . $getid . "'";
     $stmt = $db->query($sql);
     $row = $stmt->fetch();
     $getname = $row['Name'];
     $getmail = $row['Email'];
     $db2 = new PDO($dsn, $db_user, $db_password);
-    $sql2 = "SELECT Name, Email FROM member WHERE Member_ID='".$sendmember."'";
+    $sql2 = "SELECT Name, Email FROM member WHERE Member_ID='" . $sendmember . "'";
     $stmt2 = $db2->query($sql2);
     $row2 = $stmt2->fetch();
     $sendname = $row2['Name'];
     $sendmail = $row2['Email'];
-   
+
     send($getmail, $getname, $sendmail, $sendname);
 } catch (Exception $exc) {
     echo $exc->getMessage();
@@ -38,7 +33,7 @@ function send($getmail, $getname, $sendmail, $sendname) {
     $mailfromname = $sendname;  //寄件者姓名
     $mailfrom = $sendmail;  //寄件者電子郵件
     $mailSubject = "確認信件";    //主旨
-    $mailContent = mailText($getmail, $getname, $sendmail, $sendname);  //內容
+    $mailContent = mailText($getname, $sendname);  //內容
 
     $mailTo = "=?UTF-8?B?" . base64_encode($mailToname) . "?= <" . $mailTo . ">";
     $mailfrom = "=?UTF-8?B?" . base64_encode($mailfromname) . "?= <" . $mailfrom . ">";
@@ -49,8 +44,7 @@ function send($getmail, $getname, $sendmail, $sendname) {
         echo "error"; //寄信失敗顯示的錯誤訊息
     }
 }
-
-function mailText($getmail, $getname, $sendmail, $sendname) {
+function mailText($getname, $sendname) {
     $chklink = "<a href=http://fs.mis.kuas.edu.tw/~s1101137237/ODAC/check.php>"
             . "http://fs.mis.kuas.edu.tw/~s1101137237/ODAC/checkmail.php</a>";
     $message = "";
@@ -68,5 +62,4 @@ function mailText($getmail, $getname, $sendmail, $sendname) {
     $message .="<br>";
     return @$message;
 }
-
 ?>
