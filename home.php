@@ -215,7 +215,6 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
                 }
 
             }
-
             function showtime() {
                 var carnum = document.getElementById("inputcarnum").value;  //車次
                 var path = document.getElementById("inputpath").value;      //南下or北上
@@ -374,7 +373,6 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
                     }
                 }
             }
-
             function endstation(end_id) {
                 var test = document.getElementById("end").getElementsByClassName("w");
                 for (i = 0; i <= 10; i++) {
@@ -386,7 +384,6 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
                     }
                 }
             }
-
             function Nor_record() {
                 $.post("http://fs.mis.kuas.edu.tw/~s1101137237/ODAC/NDCase.php",
                         {
@@ -438,7 +435,6 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
                     }
                 }, "json");
             }
-
             function Sou_trade() {
                 $.post("http://fs.mis.kuas.edu.tw/~s1101137237/ODAC/SECase.php",
                 {
@@ -490,8 +486,8 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
                             else {//alert("error"); }
                             }
                             , "json");
-                        }
-
+                            }
+                }
                 function Nor_trade() {
                 $.post("http://fs.mis.kuas.edu.tw/~s1101137237/ODAC/NECase.php",
                         {
@@ -548,7 +544,6 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
                     }
                 }, "json");
             }
-
             function Sou_status_change(id, num) {
                 $.post("http://fs.mis.kuas.edu.tw/~s1101137249/changeSouthStatus_API.php",
                         {
@@ -566,7 +561,6 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
                     }
                 });
             }
-
             function Nor_status_change(id, num) {
                 $.post("http://fs.mis.kuas.edu.tw/~s1101137249/changeNorthStatus_API.php",
                         {
@@ -995,30 +989,6 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
 
     </div>
 </div>
-<!-- ***************************************** BY 南 **************************************** -->
-<!-- ***************************************** Dialog *************************************** -->
-<!-- ***************************************** BY 南 **************************************** -->
-<!--<div id="dialog" tabindex="-1" title="可運送者清單" style="display:none">
-   <table id="showDeliveryList" width="100%" height="100%" style="table-layout:fixed" aria-hidde="ture">
-    <thead align="center">
-      <tr>
-        <td>會員</td>
-        <td>姓名</td>
-        <td>出發站</td>
-        <td>終點站</td>
-        <td>狀態</td>
-        <td>媒合</td>
-      </tr>
-    </thead>
-    <tbody align="center">
-    </tbody>
-   </table>
-</div> -->
-<!-- ***************************************** Dialog *************************************** -->
-
-<!-- ***************************************** BY 南 **************************************** -->
-<!-- ***************************列出可運送人 抓車次 列清單 傳送邀請 ************************* -->
-<!-- ***************************************** BY 南 **************************************** -->
 <script type="text/javascript">
     function callSouthDelivery()
     {
@@ -1060,8 +1030,8 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
             }
         });
     }
-
-    function phone(obj) {
+    function phone(obj)
+    {
         var id = obj.parentNode.parentNode.rowIndex;
         var Train = document.getElementById("tb").rows[id].cells[0];
         $('#showDeliveryList tbody').empty();
@@ -1116,7 +1086,8 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
 
     }
     ;
-    function showSwal(id, email, dID, strPath) {
+    function showSwal(id, email, dID, strPath)
+    {
         swal(
                 {
                     title: '確定發出邀請嗎?',
