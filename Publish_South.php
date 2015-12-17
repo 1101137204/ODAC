@@ -28,7 +28,6 @@ try {
         foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
             $South_Delivery_Case_ID = $row['max(South_Delivery_Case_ID)'];
             echo $South_Delivery_Case_ID;
-            //echo 'asgasf';     
         }
     }
 } catch (Exception $exc) {
