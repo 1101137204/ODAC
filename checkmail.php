@@ -4,10 +4,10 @@ header('Content-type: text/html; charset=utf-8');
 try {
     include 'connectdB.php';
     $uid = htmlspecialchars(@$_GET['uid']);
-    $ups = base64_encode(htmlspecialchars(@$_GET['ups']));
+    $ups = htmlspecialchars(@$_GET['ups']);
     $name = htmlspecialchars(@$_GET['name']);
 
-    if (!empty($uid) && !empty(base64_decode($ups)) && !empty($name)) {
+    if (!empty($uid) && !empty($ups) && !empty($name)) {
         $db = new PDO($dsn, $db_user, $db_password);
         $sql = "SELECT Member_ID, Identity, Name, Phone, Email, Password, Active 
                 FROM member 
