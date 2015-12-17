@@ -8,7 +8,8 @@ header('Content-type: text/html; charset=utf-8');
 
 
 try {
-
+    include 'connectdB.php';
+    $db = new PDO($dsn, $db_user, $db_password);
     $inputcarnum = $_POST['Carnum'];
     $inputpath = $_POST['Path'];
     $inputstart = $_POST['Start'];
@@ -20,7 +21,6 @@ try {
     $Member_ID = "1";
 
     echo $Publish_Time;
-    $db = initDB();
     $stmt = $db->prepare("INSERT INTO south_delivery_case(South_ID, Member_ID, Starts, Tos, South_Delivery_Case_Status, Publish_Time) VALUES(?,?,?,?,?,?)");
     $count = $stmt->execute(array($South_ID, $Member_ID, $inputstart, $inputend, $South_Delivery_Case_Status, $Publish_Time));
 
@@ -37,19 +37,4 @@ try {
 } catch (Exception $exc) {
     echo $exc->getMessage();
 }
-
-function initDB() {
-    try {
-        $db_host = 'www.db4free.net:3306';
-        $db_name = 'odac';
-        $db_user = 'odac2015';
-        $db_password = 'odac2015';
-        $dsn = "mysql:host=$db_host;dbname=$db_name;charset=utf8";
-        $db = new PDO($dsn, $db_user, $db_password);
-        return $db;
-    } catch (PDOException $e) {
-        echo $e->getMessage();
-    }
-}
-
 ?>
