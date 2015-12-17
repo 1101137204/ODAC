@@ -437,58 +437,57 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
             }
             function Sou_trade() {
                 $.post("http://fs.mis.kuas.edu.tw/~s1101137237/ODAC/SECase.php",
-                {
-                whatever: "qq"
-                },
-                        function (data, status) {
-                            if (data.count != 0) {
-                            $('#showsoutrade tbody').empty();
-                                    $.each(data.data, function (index, jsonData) {
-                                        var newRowContent =
-                                                "<tr>" +
-                                                "<td>" + jsonData.South_Established_Case_ID + "</td>" +
-                                                "<td>" + jsonData.Train + "</td>" +
-                                                "<td>" + jsonData.Sender
-                                                + "</td>" +
-                                                "<td>" + jsonData.Postman + "</td>" +
-                                                "<td>" + jsonData.Starts + "</td>" +
-                                                "<td>" + jsonData.Tos + "</td>" +
-                                                "<td>" + jsonData.South_Established_CaseStatus + "</td>" +
-                                                "<td>";
-                                        if (jsonData.Sender == "<?php echo $Name; ?>" && jsonData.South_Established_CaseStatus == "媒合成功") {
+                        {
+                            whatever: "qq"
+                        },
+                function (data, status) {
+                    if (data.count != 0) {
+                        $('#showsoutrade tbody').empty();
+                        $.each(data.data, function (index, jsonData) {
+                            var newRowContent =
+                                    "<tr>" +
+                                    "<td>" + jsonData.South_Established_Case_ID + "</td>" +
+                                    "<td>" + jsonData.Train + "</td>" +
+                                    "<td>" + jsonData.Sender
+                                    + "</td>" +
+                                    "<td>" + jsonData.Postman + "</td>" +
+                                    "<td>" + jsonData.Starts + "</td>" +
+                                    "<td>" + jsonData.Tos + "</td>" +
+                                    "<td>" + jsonData.South_Established_CaseStatus + "</td>" +
+                                    "<td>";
+                            if (jsonData.Sender == "<?php echo $Name; ?>" && jsonData.South_Established_CaseStatus == "媒合成功") {
 
-                                            newRowContent = newRowContent +
-                                                    "<a class='btn btn-success'>" +
-                                                    '<i class="fa  fa-envelope-o" onclick="Sou_status_change(' + jsonData.South_Established_Case_ID + ',1);">交貨完成</i>' +
-                                                    "</a>";
-                                        }
-
-                                        if (jsonData.Sender == "<?php echo $Name; ?>" && jsonData.South_Established_CaseStatus == "待領收") {
-
-                                            newRowContent = newRowContent +
-                                                    "<a class='btn btn-success'>" +
-                                                    '<i class="fa  fa-envelope-o" onclick="Sou_status_change(' + jsonData.South_Established_Case_ID + ',3);">確認領收</i>' +
-                                                    "</a>";
-                                        }
-
-                                        if (jsonData.Postman == "<?php echo $Name; ?>" && jsonData.South_Established_CaseStatus == "運送中") {
-                                            newRowContent = newRowContent +
-                                                    "<a class='btn btn-primary'>" +
-                                                    '<i class="fa  fa-envelope-o" onclick="Sou_status_change(' + jsonData.South_Established_Case_ID + ',2);">已交貨</i>' +
-                                                    "</a>";
-                                        }
-                                        newRowContent = newRowContent +
-                                                "</td>" +
-                                                "</tr>";
-                                        $("#showsoutrade tbody").append(newRowContent);
-                                    });
+                                newRowContent = newRowContent +
+                                        "<a class='btn btn-success'>" +
+                                        '<i class="fa  fa-envelope-o" onclick="Sou_status_change(' + jsonData.South_Established_Case_ID + ',1);">交貨完成</i>' +
+                                        "</a>";
                             }
-                            else {//alert("error"); }
+
+                            if (jsonData.Sender == "<?php echo $Name; ?>" && jsonData.South_Established_CaseStatus == "待領收") {
+
+                                newRowContent = newRowContent +
+                                        "<a class='btn btn-success'>" +
+                                        '<i class="fa  fa-envelope-o" onclick="Sou_status_change(' + jsonData.South_Established_Case_ID + ',3);">確認領收</i>' +
+                                        "</a>";
                             }
-                            , "json");
+
+                            if (jsonData.Postman == "<?php echo $Name; ?>" && jsonData.South_Established_CaseStatus == "運送中") {
+                                newRowContent = newRowContent +
+                                        "<a class='btn btn-primary'>" +
+                                        '<i class="fa  fa-envelope-o" onclick="Sou_status_change(' + jsonData.South_Established_Case_ID + ',2);">已交貨</i>' +
+                                        "</a>";
                             }
-                }
-                function Nor_trade() {
+                            newRowContent = newRowContent +
+                                    "</td>" +
+                                    "</tr>";
+                            $("#showsoutrade tbody").append(newRowContent);
+                        });
+                    }
+                    else {
+                    }
+                }, "json");
+            }
+            function Nor_trade() {
                 $.post("http://fs.mis.kuas.edu.tw/~s1101137237/ODAC/NECase.php",
                         {
                             whatever: "qq"
