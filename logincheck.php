@@ -28,7 +28,7 @@ try {
     } else {
         echo '輸入錯誤!!!';
         header("refresh:1; url=login.php");
-    };
+    }
 } catch (Exception $exc) {
     echo $exc->getMessage();
 }

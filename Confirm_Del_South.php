@@ -23,7 +23,7 @@ try {
         echo "刪除完成";
     } else {
         echo 'error';
-    };
+    }
 } catch (Exception $exc) {
     echo $exc->getMessage();
 }

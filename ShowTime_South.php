@@ -23,7 +23,7 @@ try {
         echo $row['Train'] . " " . $row['Taipei'] . " " . $row['Banqiao'] . " " . $row['Taoyuan'] . " " . $row['Hsinchu'] . " " . $row['Miaoli'] . " " . $row['Taichung'] . " " . $row['Changhua'] . " " . $row['Yunlin'] . " " . $row['Chiayi'] . " " . $row['Tainan'] . " " . $row['Zuoying'];
     } else {
         echo 'error';
-    };
+    }
 } catch (Exception $exc) {
     echo $exc->getMessage();
 }
