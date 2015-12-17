@@ -39,9 +39,6 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
         <link rel="stylesheet" href="css/sweetalert2.css">
         <script src="js/pace.js"></script>  
         <link href="css/pace-theme-flash.min.css" rel="stylesheet" /> 
-        <!-- ******************************** BY 南 ********************************* -->
-        <!-- *******************************引用JS CSS ****************************** -->
-        <!-- ******************************** BY 南 ********************************* -->  
         <link rel="stylesheet" href="css/jquery-ui.css">
         <link rel="stylesheet" href="css/jquery-ui.min.css">
         <script src="js/jquery-1.11.3.js"></script>  
@@ -50,18 +47,15 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
         <script src="js/jquery-ui.min.js"></script>  <!--   bootstrap.min.js一定要放在jquery-ui.js上面    -->   
         <script type="text/javascript">
             function deletecheck() {
-                if (document.getElementById("inputdel").value != "")
-                {
-                    if (document.getElementById("inputdelpath").value == "south")
-                    {
+                if (document.getElementById("inputdel").value != "") {
+                    if (document.getElementById("inputdelpath").value == "south") {
                         var Member_ID = "<?php echo $Memberid; ?>";
                         $.post("http://fs.mis.kuas.edu.tw/~s1101137237/ODAC/Delete_South.php",
                                 {
                                     Del: document.getElementById("inputdel").value,
                                     Member: Member_ID
                                 },
-                        function (data, status)
-                        {
+                        function (data, status) {
                             var newdata = data.split(" ");
                             if (data != 'error') {
                                 swal({
@@ -84,8 +78,7 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
                                                     Del: document.getElementById("inputdel").value,
                                                     Member: Member_ID
                                                 },
-                                        function (data, status)
-                                        {
+                                        function (data, status) {
                                             if (status == 'success') {
                                                 swal("完成", "已刪除刊登", "success");
                                             }
@@ -988,7 +981,7 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
 
     </div>
 </div>
-<script type="text/javascript">
+<script  type="text/javascript">
     function callSouthDelivery()
     {
         var Member_ID = "<?php echo $Memberid; ?>";
