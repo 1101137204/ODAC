@@ -2,7 +2,7 @@
 
 header('Content-type: text/html; charset=utf-8');
 try {
-	
+
     include 'connectdB.php';
     $inputEmail = htmlspecialchars(@$_POST['inputEmail']);
     $inputPassword = htmlspecialchars(@$_POST['inputPassword']);
@@ -16,16 +16,11 @@ try {
     if (!empty($row)) {
         if ($row['Active'] == true) {
             session_start();
-            $_SESSION['Member_ID']=$row['Member_ID'];
-            $_SESSION['Name']=$row['Name'];
+            $_SESSION['Member_ID'] = $row['Member_ID'];
+            $_SESSION['Name'] = $row['Name'];
             $_SESSION['inputEmail'] = $inputEmail;
-            $_SESSION['start']=true;
-            
-            //echo "登錄成功！！！ 1秒自動轉向.....  ";
-
+            $_SESSION['start'] = true;
             header("refresh:0; url=home.php");
-            
-            
         } else {
             echo '帳號尚未認證! 請先認證在登入!!';
             header("refresh:1; url=index.php");
