@@ -5,12 +5,12 @@ try {
 
     include 'connectdB.php';
     $inputEmail = htmlspecialchars(@$_POST['inputEmail']);
-    $inputPassword = htmlspecialchars(@$_POST['inputPassword']);
+    $inputPassword = base64_encode(htmlspecialchars(@$_POST['inputPassword']));
     $db = new PDO($dsn, $db_user, $db_password);
 
     $sql = "SELECT Member_ID,Identity,Name,Phone,Email,Password,Active "
             . "FROM member "
-            . "WHERE Email='" . $inputEmail . "' AND Password='" . $inputPassword . "'";
+            . "WHERE Email='" . $inputEmail . "' AND Password='" . base64_decode($inputPassword) . "'";
     $stmt = $db->query($sql);
     $row = $stmt->fetch();
     if (!empty($row)) {
