@@ -7,12 +7,19 @@ try {
     $inputEmail = htmlspecialchars(@$_POST['inputEmail']);
     $inputPassword = htmlspecialchars(@$_POST['inputPassword']);
     $db = new PDO($dsn, $db_user, $db_password);
-
+/*
     $sql = "SELECT Member_ID,Identity,Name,Phone,Email,Password,Active 
             FROM member 
             WHERE Email='" . $inputEmail . "' AND Password='" . $inputPassword . "'";
     $stmt = $db->query($sql);
-    $row = $stmt->fetch();
+    */
+    $sql = "SELECT Member_ID,Identity,Name,Phone,Email,Password,Active 
+            FROM member 
+            WHERE Email =:username and Password =:password";
+    $query = $db->prepare($sql);
+    $query->execute(array(':username' => $inputEmail,':password' => $inputPassword));
+    
+    $row = $query->fetch();
     if (!empty($row)) {
         if ($row['Active']) {
             session_start();
