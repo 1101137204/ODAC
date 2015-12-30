@@ -42,8 +42,6 @@ try {
                     . "WHERE Member_ID =?";
             $stmt = $db3->prepare($sql2);
             $count = $stmt->execute(array($identity, $name, $phone, $inputEmail, $inputPassword, $memberid));
-
-
             if ($count > 0) {
                 echo "修改成功</br></br>"
                 . "<b>請重新登入!!!</b>";
