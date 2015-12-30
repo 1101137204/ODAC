@@ -50,10 +50,8 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
                     if (document.getElementById("inputdelpath").value == "south") {
                         var Member_ID = "<?php echo $Memberid; ?>";
                         $.post("http://fs.mis.kuas.edu.tw/~s1101137237/ODAC/Delete_South.php",
-                                {
-                                    Del: document.getElementById("inputdel").value,
-                                    Member: Member_ID
-                                },
+                                {Del: document.getElementById("inputdel").value,
+                                 Member: Member_ID},
                         function (data, status) {
                             var newdata = data.split(" ");
                             if (data != 'error') {
@@ -73,39 +71,24 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
                                     if (isConfirm) {
                                         var Member_ID = "<?php echo $Memberid; ?>";
                                         $.post("http://fs.mis.kuas.edu.tw/~s1101137237/ODAC/Confirm_Del_South.php",
-                                                {
-                                                    Del: document.getElementById("inputdel").value,
-                                                    Member: Member_ID
-                                                },
+                                                {Del: document.getElementById("inputdel").value,
+                                                 Member: Member_ID},
                                         function (data, status) {
-                                            if (status == 'success') {
-                                                swal("完成", "已刪除刊登", "success");
-                                            }
-                                            else {
-                                                swal("取消", "已取消刪除", "error");
-                                            }
+                                            if (status == 'success') {swal("完成", "已刪除刊登", "success");}
+                                            else {swal("取消", "已取消刪除", "error");}
                                         });
-                                    } else {
-                                        swal("取消", "已取消刪除", "error");
-                                    }
+                                    } else {swal("取消", "已取消刪除", "error");}
                                 });
-                            }
-                            else {
-                                swal("錯誤", "查詢失敗，請再次確認您的刊登編號", "error");
-                            }
+                            }else {swal("錯誤", "查詢失敗，請再次確認您的刊登編號", "error");}
                         });
-                    } else
-                    {
+                    } else{
                         var Member_ID = "<?php echo $Memberid; ?>";
                         $.post("http://fs.mis.kuas.edu.tw/~s1101137237/ODAC/Delete_North.php",
-                                {
-                                    Del: document.getElementById("inputdel").value,
-                                    Member: Member_ID
-                                },
+                                {Del: document.getElementById("inputdel").value,
+                                 Member: Member_ID},
                         function (data, status)
-                        {
-                            var newdata = data.split(" ");
-                            if (data != 'error') {
+                        {var newdata = data.split(" ");
+                         if (data != 'error') {
                                 swal({
                                     title: "刊登編號:" + newdata[0],
                                     text: "車次:" + newdata[1] + "，起點站：" + newdata[2] + "，終點站：" + newdata[3] + "。",
@@ -121,34 +104,19 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
                                     if (isConfirm) {
                                         var Member_ID = "<?php echo $Memberid; ?>";
                                         $.post("http://fs.mis.kuas.edu.tw/~s1101137237/ODAC/Confirm_Del_North.php",
-                                                {
-                                                    Del: document.getElementById("inputdel").value,
-                                                    Member: Member_ID
-                                                },
+                                                {Del: document.getElementById("inputdel").value,
+                                                 Member: Member_ID},
                                         function (data, status)
-                                        {
-                                            if (status == 'success') {
-                                                swal("完成", "已刪除刊登", "success");
-                                            }
-                                            else {
-                                                swal("取消", "已取消刪除", "error");
-                                            }
+                                        {if (status == 'success') {swal("完成", "已刪除刊登", "success");}
+                                            else {swal("取消", "已取消刪除", "error");}
                                         });
-                                    } else {
-                                        swal("取消", "已取消刪除", "error");
-                                    }
+                                    } else {swal("取消", "已取消刪除", "error");}
                                 });
-                            }
-                            else {
-                                swal("錯誤", "查詢失敗，請再次確認您的刊登車次", "error");
-
-                            }
+                            }else {swal("錯誤", "查詢失敗，請再次確認您的刊登車次", "error");}
                         });
                     }
                 }
-                else {
-                    swal("錯誤", "請輸入刊登編號", "error");
-                }
+                else {swal("錯誤", "請輸入刊登編號", "error");}
             }
             function nullcheck() {
                 if (document.getElementById("estation").innerHTML != document.getElementById("sstation").innerHTML) {
@@ -319,9 +287,7 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
                     }
                 }
                 else
-                {
-                    swal("錯誤", "請輸入車次！", "error");
-                }
+                {swal("錯誤", "請輸入車次！", "error");}
             }
             function research() {
                 $('.showtimer').addClass('hide');
@@ -335,7 +301,6 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
                 for (z = 1; z <= 11; z++) {
                     $('.s' + z).addClass('hide');
                     $('.e' + z).addClass('hide');
-
                 }  //重新查詢
             }
             function startstation(start_id) {
@@ -343,9 +308,7 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
                 var getstartstation = document.getElementById("str").getElementsByClassName("q");
                 for (i = 0; i <= 10; i++) {
                     if (start_id != getstartstation[i].id)
-                    {
-                        $('.s' + (i + 1)).addClass('hide');
-                    }
+                    {$('.s' + (i + 1)).addClass('hide');}
                     else {
                         document.getElementById("sstation").innerHTML = start_id;
                         $('.e' + (i + 1)).addClass('hide');
@@ -368,19 +331,13 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
             function endstation(end_id) {
                 var test = document.getElementById("end").getElementsByClassName("w");
                 for (i = 0; i <= 10; i++) {
-                    if (end_id != test[i].id) {
-                        $('.e' + (i + 1)).addClass('hide');
-                    }
-                    else {
-                        document.getElementById("estation").innerHTML = end_id;
-                    }
+                    if (end_id != test[i].id) {$('.e' + (i + 1)).addClass('hide');}
+                    else {document.getElementById("estation").innerHTML = end_id;}
                 }
             }
             function Nor_record() {
                 $.post("http://fs.mis.kuas.edu.tw/~s1101137237/ODAC/NDCase.php",
-                        {
-                            whatever: "qq"
-                        },
+                        {whatever: "qq"},
                 function (data, status) {
                     if (data.count != 0) {
                         $('#shownorrecord tbody').empty();
@@ -396,17 +353,12 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
                                     "</tr>";
                             $("#shownorrecord tbody").append(newRowContent);
                         });
-                    }
-                    else {
-                    }
+                    }else {}
                 }, "json");
-                //setTimeout(showDialog,2000);
             }
             function Sou_record() {
                 $.post("http://fs.mis.kuas.edu.tw/~s1101137237/ODAC/SDCase.php",
-                        {
-                            whatever: "qq"
-                        },
+                        {whatever: "qq"},
                 function (data, status) {
                     if (data.count != 0) {
                         $('#showsourecord tbody').empty();
@@ -422,16 +374,12 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
                                     "</tr>";
                             $("#showsourecord tbody").append(newRowContent);
                         });
-                    }
-                    else {
-                    }
+                    }else {}
                 }, "json");
             }
             function Sou_trade() {
                 $.post("http://fs.mis.kuas.edu.tw/~s1101137237/ODAC/SECase.php",
-                        {
-                            whatever: "qq"
-                        },
+                        {whatever: "qq"},
                 function (data, status) {
                     if (data.count != 0) {
                         $('#showsoutrade tbody').empty();
@@ -448,44 +396,32 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
                                     "<td>" + jsonData.South_Established_CaseStatus + "</td>" +
                                     "<td>";
                             if (jsonData.Sender == "<?php echo $Name; ?>" && jsonData.South_Established_CaseStatus == "媒合成功") {
-
                                 newRowContent = newRowContent +
                                         "<a class='btn btn-success'>" +
                                         '<i class="fa  fa-envelope-o" onclick="Sou_status_change(' + jsonData.South_Established_Case_ID + ',1);">交貨完成</i>' +
-                                        "</a>";
-                            }
-
+                                        "</a>";}
                             if (jsonData.Sender == "<?php echo $Name; ?>" && jsonData.South_Established_CaseStatus == "待領收") {
-
                                 newRowContent = newRowContent +
                                         "<a class='btn btn-success'>" +
                                         '<i class="fa  fa-envelope-o" onclick="Sou_status_change(' + jsonData.South_Established_Case_ID + ',3);">確認領收</i>' +
-                                        "</a>";
-                            }
-
+                                        "</a>";}
                             if (jsonData.Postman == "<?php echo $Name; ?>" && jsonData.South_Established_CaseStatus == "運送中") {
                                 newRowContent = newRowContent +
                                         "<a class='btn btn-primary'>" +
                                         '<i class="fa  fa-envelope-o" onclick="Sou_status_change(' + jsonData.South_Established_Case_ID + ',2);">已交貨</i>' +
-                                        "</a>";
-                            }
+                                        "</a>";}
                             newRowContent = newRowContent +
                                     "</td>" +
                                     "</tr>";
                             $("#showsoutrade tbody").append(newRowContent);
                         });
-                    }
-                    else {
-                    }
+                    }else {}
                 }, "json");
             }
             function Nor_trade() {
                 $.post("http://fs.mis.kuas.edu.tw/~s1101137237/ODAC/NECase.php",
-                        {
-                            whatever: "qq"
-                        },
+                        {whatever: "qq"},
                 function (data, status) {
-
                     if (data.count != 0) {
                         $('#shownortrade tbody').empty();
                         $.each(data.data, function (index, jsonData) {
@@ -500,39 +436,25 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
                                     "<td>" + jsonData.North_Established_Case_Status + "</td>" +
                                     "<td>";
                             if (jsonData.Sender == "<?php echo $Name; ?>" && jsonData.North_Established_Case_Status == "媒合成功") {
-
                                 newRowContent = newRowContent +
                                         "<a class='btn btn-success'>" +
                                         '<i class="fa  fa-envelope-o" onclick="Nor_status_change(' + jsonData.North_Established_Case_ID + ',1);">交貨完成</i>' +
-                                        "</a>";
-
-                            }
-
+                                        "</a>";}
                             if (jsonData.Sender == "<?php echo $Name; ?>" && jsonData.North_Established_Case_Status == "待領收") {
-
                                 newRowContent = newRowContent +
                                         "<a class='btn btn-success'>" +
                                         '<i class="fa  fa-envelope-o" onclick="Nor_status_change(' + jsonData.North_Established_Case_ID + ',3);">確認領收</i>' +
-                                        "</a>";
-                            }
-
+                                        "</a>";}
                             if (jsonData.Postman == "<?php echo $Name; ?>" && jsonData.North_Established_Case_Status == "運送中") {
-
                                 newRowContent = newRowContent +
                                         "<a class='btn btn-primary'>" +
                                         '<i class="fa  fa-envelope-o" onclick="Nor_status_change(' + jsonData.North_Established_Case_ID + ',2);">已交貨</i>' +
-                                        "</a>";
-                            }
-
+                                        "</a>";}
                             newRowContent = newRowContent +
                                     "</td>" +
                                     "</tr>";
-                            $("#shownortrade tbody").append(newRowContent);
-
-                        });
-                    }
-                    else {
-                    }
+                            $("#shownortrade tbody").append(newRowContent);});
+                    }else {}
                 }, "json");
             }
             function Sou_status_change(id, num) {
@@ -543,20 +465,13 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
                         }, function (data, status) {
                     if (data == 'success') {
                         swal("成功", "狀態已更新", "success");
-                        location.reload();
-                    }
-                    else {
-                        //location.reload(true);
-                        swal("錯誤", "狀態更新失敗", "error");
-                        //$('.overModal').removeClass('hide');
-                    }
-                });
+                        location.reload();}
+                    else {swal("錯誤", "狀態更新失敗", "error");}});
             }
             function Nor_status_change(id, num) {
                 $.post("http://fs.mis.kuas.edu.tw/~s1101137249/changeNorthStatus_API.php",
-                        {
-                            Status_ID: id,
-                            Status: num
+                        {Status_ID: id,
+                         Status: num
                         }, function (data, status) {
                     if (data == 'success') {
                         swal("成功", "狀態已更新", "success");
@@ -569,7 +484,6 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
             }
         </script>
     </head>
-
     <body>
         <div class="button-container" id="toggle">
             <span class="top"></span>
@@ -591,12 +505,8 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
                 </ul>
             </nav>
         </div>
-
-        <!-- 刊登紀錄Modal -->
         <div class="modal fade" id="recordModal" role="dialog">
             <div class="modal-dialog">
-
-                <!-- 刊登紀錄Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -621,7 +531,6 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
                                     </tr>
                                 </thead>
                                 <tbody>
-
                                 </tbody>
                             </table>
                         </div>
@@ -653,24 +562,17 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
                 </div>
             </div>
         </div>
-        <!-- 媒合紀錄Modal -->
         <div class="modal fade " id="overModal" role="dialog">
             <div class="modal-dialog">
-
-                <!-- 媒合紀錄Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title"><?php echo $Name; ?>的媒合資料</h4>
                     </div>
-
                     <div class="modal-header">
-
                         <h4 class="modal-title">北上</h4>
                     </div>
                     <div class="modal-body">
-
-
                         <div class="table-responsive">
                             <table id="shownortrade" class="table table-hover">
                                 <thead >
@@ -686,16 +588,13 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
                                     </tr>
                                 </thead>
                                 <tbody>
-
                                 </tbody>
                             </table>
                         </div>
                     </div>
-
                     <div class="modal-header ">
                         <h4 class="modal-title" >南下</h4>
                     </div>
-
                     <div class="modal-body">
                         <div class="table-responsive">
                             <table id="showsoutrade" class="table table-hover">
@@ -712,7 +611,6 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
                                     </tr>
                                 </thead>
                                 <tbody>
-
                                 </tbody>
                             </table>
                         </div>
@@ -721,12 +619,9 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
                     </div>
                 </div>
-
             </div>
         </div>
-
     </div>
-    <!-- Start page content -->
     <header class="container-fluid intro-lg  bkg">
         <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
             <h3 id="supra" class="animated fadeInUp">點對點</h3>
@@ -768,26 +663,19 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
             </div>
         </div>
     </div>
-
     <div class="expertise">
-
         <div class="row">
             <div class="col-lg-12">
                 <h2 id="" class="uppercase wow">介紹影片</h2>
                 <div class="divider"></div>	
             </div>
         </div>
-
         <div align="center" class="embed-responsive embed-responsive-16by9">
             <video  controls  class="embed-responsive-item">
                 <source src="img/in_thunder.mp4" type=video/mp4>
             </video>
         </div>
-        <!--<h2 id="" class="uppercase wow">介紹海報</h2>
-            <div class="divider"></div> 
-            <img src="img/ThunderPost_Final.jpg" height="40%" width="40%"> -->
     </div> 
-
     <div class="container-fluid recent-work">
         <div id="maker" class="col-xs-12 col-md-8 col-md-offset-2">
             <h3 class="text-center uppercase">刊登</h3>
@@ -918,7 +806,6 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8">
-            <!--    Hover Rows  -->
             <div class="panel panel-default ">
                 <div class="panel-body ">
                     <div class="table-responsive">
@@ -939,22 +826,17 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
                     </div>
                 </div>
             </div>
-            <!-- End  Hover Rows  -->
         </div>
     </div>
 </div>
-<!-- 刊登紀錄Modal -->
 <div class="modal fade" id="showtimeModal" role="dialog">
     <div class="modal-dialog">
-
-        <!-- 刊登紀錄Modal content-->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">可運送人資料</h4>
             </div>
             <div class="modal-body">
-
                 <div class="table-responsive">
                     <table id="showDeliveryList" class="table table-hover">
                         <thead align="center" >
@@ -968,7 +850,6 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
                             </tr>
                         </thead>
                         <tbody align="center">
-
                         </tbody>
                     </table>
                 </div>
@@ -977,7 +858,6 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
                 <button type="button" class="btn btn-primary" data-dismiss="modal" >Ok</button>
             </div>
         </div>
-
     </div>
 </div>
 <script  type="text/javascript">
@@ -985,40 +865,30 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
     {
         var Member_ID = "<?php echo $Memberid; ?>";
         $.post("http://fs.mis.kuas.edu.tw/~s1101137249/homeDelivery_API.php",
-                {
-                    path: 'south',
-                    mID: Member_ID
-                },
+                {path: 'south',
+                 mID: Member_ID},
         function (data, status) {
             if (status == 'success') {
                 var newRowContent = '' + data;
                 $('#tb tbody').empty();
-
                 $("#tb tbody").append(newRowContent);
             }
-            else {
-                alert("error");
-            }
-
+            else {alert("error");}
         });
     }
     function callNorthDelivery()
     {
         var Member_ID = "<?php echo $Memberid; ?>";
         $.post("http://fs.mis.kuas.edu.tw/~s1101137249/homeDelivery_API.php",
-                {
-                    path: 'north',
-                    mID: Member_ID
-                },
+                {path: 'north',
+                 mID: Member_ID},
         function (data, status) {
             if (status == 'success') {
                 var newRowContent = '' + data;
                 $('#tb tbody').empty();
                 $("#tb tbody").append(newRowContent);
             }
-            else {
-                alert("error");
-            }
+            else {alert("error");}
         });
     }
     function phone(obj)
@@ -1032,16 +902,11 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
     {
         var strPath = '';
         if (SouthNorth == 'IconNorth')
-        {
-            strPath = 'north';
-        } else {
-            strPath = 'south';
-        }
+        {strPath = 'north';} 
+        else {strPath = 'south';}
         $.post("http://fs.mis.kuas.edu.tw/~s1101137249/showDelivery_API.php",
-                {
-                    train: carTrain,
-                    path: strPath
-                },
+                {train: carTrain,
+                 path: strPath},
         function (data, status) {
             if (status == 'success') {
                 $.each(data.data, function (index, jsonData) {
@@ -1070,9 +935,7 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
                     }
                 });
             }
-            else {
-                alert("error");
-            }
+            else {alert("error");}
         }, "json");
 
     }
@@ -1104,21 +967,14 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
                             path: strPath
                         },
                 function (data, status) {
-                    if (data == 'success') {
-                        swal('送出!', '你已經寄出邀請給會員編號 ' + id + ' ,  ' + email + ' !', 'success');
-                    }
-                    else {
-                        swal('失敗', '重新查詢', 'error');
-                    }
+                    if (data == 'success') {swal('送出!', '你已經寄出邀請給會員編號 ' + id + ' ,  ' + email + ' !', 'success');}
+                    else {swal('失敗', '重新查詢', 'error');}
                 });
-            } else {
-                swal('取消!', '您已經取消邀請給會員編號 ' + id + ' !', 'error');
-            }
+            } else {swal('取消!', '您已經取消邀請給會員編號 ' + id + ' !', 'error');}
         }
         )
     }
 </script>
-<!-- ***************************列出可運送人 抓車次 列清單 傳送邀請 ************************* -->
 <footer>
     <ul class="list-inline social">
         <li><a href="https://twitter.com/" target="_blank" class="social-twitter"><i class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-twitter fa-stack-1x fa-inverse"></i></i></a></li>
@@ -1126,11 +982,9 @@ if (isset($_SESSION["inputEmail"]) && $_SESSION["start"] === true) {
         <li><a href="https://dribbble.com/" target="_blank" class="social-dribbble"><i class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-dribbble fa-stack-1x fa-inverse"></i></i></a></li>
         <li><a href="mailto:gravity820305@gmail.com" class="social-mail"><i class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-envelope fa-stack-1x fa-inverse"></i></i></a></li>
     </ul>
-
     <p>Made with <span class="fa fa-heart animated pulse"></span> in KUAS MIS.</p>
     <p>&copy; 2015 Eric. All rights reserved.</p>
 </footer>   
-<!-- Javascript -->
 <script src="js/bootstrap-select.js"></script>
 <script src="js/smooth-scroll.js"></script>
 <script> smoothScroll.init();</script>
